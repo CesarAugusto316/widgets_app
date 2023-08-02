@@ -18,5 +18,10 @@ List<MenuItem> menuItems = [
       title: 'Botones',
       subTitle: 'varios botones',
       link: '',
-      iconData: Icons.access_time_sharp)
+      iconData: Icons.access_time_sharp),
+  MenuItem(
+      title: 'Another Title',
+      subTitle: 'Judas Priest turbo lover',
+      link: '',
+      iconData: Icons.music_off_sharp),
 ];
