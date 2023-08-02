@@ -20,7 +20,7 @@ List<MenuItem> menuItems = [
       link: '',
       iconData: Icons.access_time_sharp),
   MenuItem(
-      title: 'Another Title',
+      title: 'Tarjetas',
       subTitle: 'Judas Priest turbo lover',
       link: '',
       iconData: Icons.music_off_sharp),
