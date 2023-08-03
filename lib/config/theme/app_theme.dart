@@ -15,10 +15,13 @@ class AppTheme {
         'Selected color not allowed');
 
     return ThemeData(
+        // textTheme: TextTheme(),
         appBarTheme: const AppBarTheme(
           centerTitle: true,
         ),
         useMaterial3: true,
+        brightness: Brightness.light,
+        // fontFamily: 'mono',
         colorSchemeSeed: colorsList[selecteColor]);
   }
 }

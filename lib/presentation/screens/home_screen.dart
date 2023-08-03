@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const String pathName = 'home_screen';
+
   const HomeScreen({super.key});
 
   @override
@@ -51,7 +53,7 @@ class _CustomTile extends StatelessWidget {
       title: Text(item.title),
       subtitle: Text(item.subTitle),
       onTap: () {
-        context.go(item.link);
+        context.goNamed(item.link);
       },
     );
   }
