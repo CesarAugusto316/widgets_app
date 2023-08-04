@@ -30,9 +30,10 @@ class CardsScreen extends StatelessWidget {
 }
 
 class _CardsContainer extends StatelessWidget {
-  final List<Map<String, dynamic>> cards;
+  final List<Map<String, dynamic>> _cards;
 
-  const _CardsContainer({required this.cards});
+  const _CardsContainer({required List<Map<String, dynamic>> cards})
+      : _cards = cards;
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +42,18 @@ class _CardsContainer extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            ...cards.map((card) => _Card1(
+            ..._cards.map((card) => _Card1(
                   elevation: card['elevation'],
                   label: card['label'],
                 )),
-            ...cards.map((card) => _Card2(
+            ..._cards.map((card) => _Card2(
                   elevation: card['elevation'],
                   label: card['label'],
-                ))
+                )),
+            ..._cards.map((card) => _Card3(
+                  elevation: card['elevation'],
+                  label: card['label'],
+                )),
           ],
         ),
       ),
@@ -56,20 +61,21 @@ class _CardsContainer extends StatelessWidget {
   }
 }
 
-class _Card2 extends StatelessWidget {
-  final num elevation;
-  final String label;
+class _Card3 extends StatelessWidget {
+  final num _elevation;
+  final String _label;
 
-  const _Card2({required this.label, required this.elevation});
+  const _Card3({required String label, required num elevation})
+      : _label = label,
+        _elevation = elevation;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(
-          side: BorderSide(
-              width: 1, color: Theme.of(context).colorScheme.secondary),
-          borderRadius: const BorderRadius.all(Radius.circular(20))),
-      elevation: elevation as double,
+      elevation: _elevation as double,
+      color: Theme.of(context).colorScheme.primaryContainer,
+      semanticContainer: true,
+      borderOnForeground: false,
       child: Container(
           height: 180,
           padding: const EdgeInsets.all(20),
@@ -79,7 +85,41 @@ class _Card2 extends StatelessWidget {
               const Align(
                   alignment: Alignment.topRight,
                   child: Icon(Icons.mobile_friendly)),
-              Align(alignment: Alignment.bottomLeft, child: Text(label))
+              Align(alignment: Alignment.bottomLeft, child: Text(_label))
+            ],
+          )),
+    );
+  }
+}
+
+class _Card2 extends StatelessWidget {
+  final num _elevation;
+  final String _label;
+
+  const _Card2({required String label, required num elevation})
+      : _label = label,
+        _elevation = elevation;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Theme.of(context).colorScheme.tertiaryContainer,
+      shape: RoundedRectangleBorder(
+          side: BorderSide(
+              width: 4,
+              color: Theme.of(context).colorScheme.secondaryContainer),
+          borderRadius: const BorderRadius.all(Radius.circular(20))),
+      elevation: _elevation as double,
+      child: Container(
+          height: 180,
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Align(
+                  alignment: Alignment.topRight,
+                  child: Icon(Icons.mobile_friendly)),
+              Align(alignment: Alignment.bottomLeft, child: Text(_label))
             ],
           )),
     );
@@ -87,15 +127,17 @@ class _Card2 extends StatelessWidget {
 }
 
 class _Card1 extends StatelessWidget {
-  final num elevation;
-  final String label;
+  final num _elevation;
+  final String _label;
 
-  const _Card1({required this.label, required this.elevation});
+  const _Card1({required String label, required num elevation})
+      : _label = label,
+        _elevation = elevation;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: elevation as double,
+      elevation: _elevation as double,
       child: Container(
           height: 180,
           padding: const EdgeInsets.all(20),
@@ -105,7 +147,7 @@ class _Card1 extends StatelessWidget {
               const Align(
                   alignment: Alignment.topRight,
                   child: Icon(Icons.mobile_friendly)),
-              Align(alignment: Alignment.bottomLeft, child: Text(label))
+              Align(alignment: Alignment.bottomLeft, child: Text(_label))
             ],
           )),
     );
