@@ -41,7 +41,11 @@ class _CardsContainer extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            ...cards.map((card) => _Card(
+            ...cards.map((card) => _Card1(
+                  elevation: card['elevation'],
+                  label: card['label'],
+                )),
+            ...cards.map((card) => _Card2(
                   elevation: card['elevation'],
                   label: card['label'],
                 ))
@@ -52,11 +56,41 @@ class _CardsContainer extends StatelessWidget {
   }
 }
 
-class _Card extends StatelessWidget {
+class _Card2 extends StatelessWidget {
   final num elevation;
   final String label;
 
-  const _Card({required this.label, required this.elevation});
+  const _Card2({required this.label, required this.elevation});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(
+          side: BorderSide(
+              width: 1, color: Theme.of(context).colorScheme.secondary),
+          borderRadius: const BorderRadius.all(Radius.circular(20))),
+      elevation: elevation as double,
+      child: Container(
+          height: 180,
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Align(
+                  alignment: Alignment.topRight,
+                  child: Icon(Icons.mobile_friendly)),
+              Align(alignment: Alignment.bottomLeft, child: Text(label))
+            ],
+          )),
+    );
+  }
+}
+
+class _Card1 extends StatelessWidget {
+  final num elevation;
+  final String label;
+
+  const _Card1({required this.label, required this.elevation});
 
   @override
   Widget build(BuildContext context) {
