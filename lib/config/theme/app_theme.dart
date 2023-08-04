@@ -10,8 +10,8 @@ class AppTheme {
     Colors.red,
   ];
 
-  ThemeData theme(BuildContext context, [int selecteColor = 0]) {
-    assert(selecteColor >= 0 && selecteColor < colorsList.length,
+  ThemeData theme(BuildContext context, [int selectedColor = 0]) {
+    assert(selectedColor >= 0 && selectedColor < colorsList.length,
         'Selected color not allowed');
 
     return ThemeData(
@@ -22,6 +22,6 @@ class AppTheme {
         useMaterial3: true,
         brightness: Brightness.light,
         // fontFamily: 'mono',
-        colorSchemeSeed: colorsList[selecteColor]);
+        colorSchemeSeed: colorsList[selectedColor]);
   }
 }

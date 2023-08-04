@@ -7,6 +7,10 @@ class ButtonsScreen extends StatelessWidget {
 
   const ButtonsScreen({super.key});
 
+  void _handleGoBack(BuildContext context) {
+    context.goNamed(HomeScreen.pathName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,9 +18,34 @@ class ButtonsScreen extends StatelessWidget {
         title: const Text('Buttons'),
         leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
-            onPressed: () => context.goNamed(HomeScreen.pathName)),
+            onPressed: () => _handleGoBack(context)),
       ),
-      body: Container(),
+      body: _ButtonsContainer(),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () => _handleGoBack(context),
+          child: const Icon(Icons.arrow_back_ios)),
     );
+  }
+}
+
+class _ButtonsContainer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        padding: const EdgeInsets.all(20),
+        child: Wrap(
+            spacing: 16,
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              ElevatedButton(
+                  onPressed: () {}, child: const Text('Hello World')),
+              ElevatedButton.icon(
+                  label: const Text('This is a label'),
+                  icon: const Icon(Icons.access_alarm_sharp),
+                  onPressed: () {}),
+              const ElevatedButton(
+                  onPressed: null, child: Text('hello disable')),
+            ]));
   }
 }
